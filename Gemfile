@@ -43,6 +43,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'line-bot-api', github: 'stivan622/line-bot-sdk-ruby'
-  gem 'dotenv-rails'
+
 end
+gem 'line-bot-api', github: 'stivan622/line-bot-sdk-ruby'
+gem 'dotenv-rails'
