@@ -17,13 +17,12 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           message = {
-            type: 'text',
-            text: event.message['text']
+            type: 'sticker',
+             "stickerId" => "2"
           }
           response = client.reply_message(event['replyToken'], message)
           p response
         end
-
       end
     }
     head :ok
