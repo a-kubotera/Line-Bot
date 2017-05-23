@@ -18,7 +18,9 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'sticker',
-             "stickerId" => "2"
+            "id" => "5515306012619",
+            "stickerId" => "2",
+            "packageId" => "1"
           }
           response = client.reply_message(event['replyToken'], message)
           p response
