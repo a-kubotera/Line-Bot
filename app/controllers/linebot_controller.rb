@@ -18,7 +18,7 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
-            text: event.message['text']
+            text: event.message['aaaa']
           }
           response = client.reply_message(event['replyToken'], message)
           p response
