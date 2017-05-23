@@ -18,7 +18,6 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'sticker',
-            "id" => "5515306012619",
             "stickerId" => "2",
             "packageId" => "1"
           }
