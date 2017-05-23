@@ -16,13 +16,21 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
+          if(text == 'スタンプ送って')
+            {
+              "type" => "sticker",
+              "id" => "5515306012619",
+              "stickerId" => "2",
+              "packageId" => "1"
+            }
           message = {
             type: 'text',
-            text: 'aaaa'
+            text: event.message['text']
           }
           response = client.reply_message(event['replyToken'], message)
           p response
         end
+
       end
     }
     head :ok
