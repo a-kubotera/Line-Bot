@@ -4,7 +4,6 @@ class LinebotController < ApplicationController
 
   def callback
     body = request.body.read
-    @stic = Sticker.all
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
@@ -18,7 +17,7 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           if event.message['text'] =='スタンプ頂戴！'
-            @stic.order("RANDOM()").first
+            @stic = Sticker.order("RANDOM()").first
             message = {
               type: 'sticker',
               "stickerId" => @stic.sticId,
