@@ -33,8 +33,9 @@ class LinebotController < ApplicationController
               text: event.message['text']
             }
             response = client.reply_message(event['replyToken'], message)
-            client = Slack::Web::Client.new
-            client.chat_postMessage(channel: '#hackathon', text: event.message['text'], as_user: true)
+            #Slack：Dive into code のHackathonにオウム返しする
+            #client = Slack::Web::Client.new
+            #client.chat_postMessage(channel: '#hackathon', text: event.message['text'], as_user: true)
             p response
           end
         end
