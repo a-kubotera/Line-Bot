@@ -49,8 +49,9 @@ end
 gem 'line-bot-api', github: 'stivan622/line-bot-sdk-ruby'
 gem 'dotenv-rails'
 gem 'rails_12factor', group: :production
+
 group :development,:test do
-  gem 'letter_opener_web'
   gem 'pry-rails'
   gem 'better_errors'
 end
+gem 'slack-ruby-client'

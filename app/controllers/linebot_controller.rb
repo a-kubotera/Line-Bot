@@ -4,7 +4,6 @@ class LinebotController < ApplicationController
 
   def callback
     body = request.body.read
-
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       error 400 do 'Bad Request' end
@@ -17,7 +16,10 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           if event.message['text'] =='スタンプ頂戴！'
-            @stic = Sticker.order("RANDOM()").first
+            @min = Sticker.minimum(:id)
+            @max = Sticker.maximum(:id)
+            @random = Random.rand(@min .. @max)
+            @stic = Sticker.find(@random)
             message = {
               type: 'sticker',
               "stickerId" => @stic.sticId,
@@ -31,6 +33,8 @@ class LinebotController < ApplicationController
               text: event.message['text']
             }
             response = client.reply_message(event['replyToken'], message)
+            client = Slack::Web::Client.new
+            client.chat_postMessage(channel: '#hackathon', text: event.message['text'], as_user: true)
             p response
           end
         end
