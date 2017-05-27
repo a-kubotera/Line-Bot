@@ -16,10 +16,7 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           if event.message['text'] =='スタンプ頂戴！'
-            @min = Sticker.minimum(:id)
-            @max = Sticker.maximum(:id)
-            @random = Random.rand(@min .. @max)
-            @stic = Sticker.find(@random)
+            @stic = Sticker.get_random 
             message = {
               type: 'sticker',
               "stickerId" => @stic.sticId,
